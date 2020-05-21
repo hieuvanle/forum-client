@@ -9,7 +9,3 @@ export const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
 // export const EDIT_POSTS = 'EDIT_POSTS';
 // export const EDIT_POSTS_SUCCESS = 'EDIT_POSTS_SUCCESS';
 // export const EDIT_POSTS_FAILURE = 'EDIT_POSTS_FAILURE';
-
-export const getPosts = () => ({
-  type: GET_POSTS,
-});

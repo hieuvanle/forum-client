@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import LoginForm from "../subComponents/LoginForm";
 import Button from "@material-ui/core/Button";
 import Post from "../subComponents/Post";
-import PostForm from "../subComponents/PostForm";
 import HomeIcon from "@material-ui/icons/Home";
 import ExploreIcon from "@material-ui/icons/Explore";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -14,6 +13,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PostModal from "../subComponents/PostModal";
 import { green, yellow, red, orange } from "@material-ui/core/colors";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,29 +53,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function HomePage() {
-  //Static states
-  const [isAuth, setAuth] = useState(true);
-  const [posts, setPosts] = useState([
-    {
-      _id: 1,
-      title: "First post",
-      content: "This is the first post",
-      author: "Alex",
-    },
-    {
-      _id: 2,
-      title: "Second post",
-      content: "This is the second post",
-      author: "Hannah",
-    },
-    {
-      _id: 3,
-      title: "First post",
-      content: "This is the first post",
-      author: "Alex",
-    },
-  ]);
   const classes = useStyles();
+  const postState = useSelector((state) => state.postState);
+  const authState = useSelector((state) => state.authState);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "GET_POSTS" });
+  }, []);
+  console.log(postState.posts[0]);
+
   //Render
   return (
     <div className={classes.root}>
@@ -83,7 +69,7 @@ function HomePage() {
         <Grid container spacing={6}>
           <Grid item md={4} sm={12}>
             {" "}
-            {!isAuth ? (
+            {!authState.isAuth ? (
               <Paper className={classes.loginPaper} elevation={1}>
                 <LoginForm />
               </Paper>
@@ -153,16 +139,14 @@ function HomePage() {
           <Grid item md={8} sm={12}>
             <Paper className={classes.paper} elevation={1}>
               {" "}
-              {posts.map((post) => {
-                return (
-                  <Post
-                    id={post._id}
-                    title={post.title}
-                    content={post.content}
-                    author={post.author}
-                  />
-                );
-              })}{" "}
+              {postState.posts.map((post) => (
+                <Post
+                  key={post._id}
+                  title={post.title}
+                  content={post.content}
+                  author={post.author.name}
+                />
+              ))}{" "}
             </Paper>{" "}
           </Grid>{" "}
         </Grid>{" "}

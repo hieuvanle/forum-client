@@ -9,6 +9,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import TransitionsModal from "../subComponents/RegisterModal";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,25 +31,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NavBar() {
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [isAuth, setAuth] = useState(false);
+  const authState = useSelector((state) => state.authState);
+
+  //Modal
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const logout = () => {
-    setAuth(false);
+  const onClick = () => {
+    dispatch(logout());
   };
 
   return (
@@ -58,7 +56,7 @@ function NavBar() {
             <Typography variant="h4" className={classes.title}>
               Forum
             </Typography>
-            {isAuth ? (
+            {authState.isAuth ? (
               <div>
                 <IconButton onClick={handleMenu} color="inherit">
                   <AccountCircle />
@@ -80,14 +78,7 @@ function NavBar() {
                 >
                   <MenuItem onClick={handleClose}>My Profile</MenuItem>
                   <MenuItem onClick={handleClose}>Account</MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      logout();
-                    }}
-                  >
-                    Logout
-                  </MenuItem>
+                  <MenuItem onClick={onClick}>Logout</MenuItem>
                 </Menu>
               </div>
             ) : (

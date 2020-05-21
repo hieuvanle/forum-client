@@ -1,4 +1,4 @@
-import { GET_BOOKS, GET_BOOKS_SUCCESS, GET_POSTS_FAILURE } from "./actions";
+import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE } from "./actions";
 
 const initialState = {
   loading: false,
@@ -7,13 +7,13 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  switch (action.stype) {
-    case GET_BOOKS:
+  switch (action.type) {
+    case GET_POSTS:
       return {
         ...state,
         loading: true,
       };
-    case GET_BOOKS_SUCCESS:
+    case GET_POSTS_SUCCESS:
       return {
         ...state,
         loading: false,

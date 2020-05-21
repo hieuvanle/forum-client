@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -9,6 +8,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   subPaper: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Post(props) {
+  const authState = useSelector((state) => state.authState);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -90,8 +91,14 @@ function Post(props) {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Edit</MenuItem>
-            <MenuItem onClick={handleClose}>Delete</MenuItem>
+            {authState.isAuth ? (
+              <div>
+                <MenuItem onClick={handleClose}>Edit</MenuItem>
+                <MenuItem onClick={handleClose}>Delete</MenuItem>
+              </div>
+            ) : (
+              <MenuItem>See More</MenuItem>
+            )}
           </Menu>
         </div>
       </Grid>
