@@ -29,7 +29,6 @@ export default function UploadArea() {
       );
       setFile({});
       setSuccess(true);
-      console.log(res.data);
     } catch (err) {
       console.log(err);
       setSuccess(false);
