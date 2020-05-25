@@ -3,12 +3,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
-import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import { useSelector } from "react-redux";
+import Avatar from "@material-ui/core/Avatar";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
 const useStyles = makeStyles((theme) => ({
   subPaper: {
@@ -31,11 +33,20 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     lineHeight: "20px",
   },
+  alignPost: {
+    textAlign: "left",
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }));
 
 function Post(props) {
   const authState = useSelector((state) => state.authState);
   const classes = useStyles();
+
+  //Menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleMenu = (event) => {
@@ -49,10 +60,14 @@ function Post(props) {
     <Paper className={classes.subPaper} elevation={2}>
       <Grid container spacing={3}>
         <Grid item xs={2} className={classes.center}>
-          <p>{props.author}</p>
+          <Avatar
+            alt="Remy Sharp"
+            className={classes.large}
+            src={props.author.image}
+          />
         </Grid>
-        <Grid item xs={8}>
-          <div>
+        <Grid item xs={7}>
+          <div className={classes.alignPost}>
             <Typography className={classes.title} variant="h6">
               {props.title}
             </Typography>
@@ -61,9 +76,12 @@ function Post(props) {
             </Typography>
           </div>
         </Grid>
-        <Grid item xs={1} className={classes.center}>
+        <Grid item xs={2} className={classes.center}>
           <IconButton color="inherit">
-            <ModeCommentIcon color="primary" fontSize="small" />
+            <ThumbUpIcon fontSize="small" color="secondary" />
+          </IconButton>
+          <IconButton color="inherit">
+            <ThumbDownIcon fontSize="small" color="secondary" />
           </IconButton>
         </Grid>
         <Grid item xs={1} className={classes.center}>

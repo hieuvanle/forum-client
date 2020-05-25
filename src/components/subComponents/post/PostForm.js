@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import { addPost } from "../../redux/posts/actions";
+import Alert from "@material-ui/lab/alert";
 
 const useStyles = makeStyles((theme) => ({
   buttonMargin: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PostForm(props) {
+function PostForm() {
   const classes = useStyles();
   const authState = useSelector((state) => state.authState);
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ function PostForm(props) {
     title: "",
     content: "",
   });
+  const [success, setSuccess] = useState(null);
   const onChange = (e) => {
     const { name, value } = e.target;
     const decodedId = jwtDecode(authState.token)._id;
@@ -40,7 +41,12 @@ function PostForm(props) {
         `http://localhost:5000/users/${post.author}/posts`,
         post
       );
-      dispatch({ type: "GET_POST" });
+      dispatch({ type: "GET_POSTS" });
+      setPost({
+        author: "",
+        title: "",
+        content: "",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -50,6 +56,11 @@ function PostForm(props) {
     <div>
       <form className={classes.form} onSubmit={onSubmit}>
         <Typography variant="h6">New Discussion</Typography>
+        {success === true ? (
+          <Alert severity="success">Post successfully!</Alert>
+        ) : success === false ? (
+          <Alert severity="error">Post failed!</Alert>
+        ) : null}
         <TextField
           variant="outlined"
           margin="normal"

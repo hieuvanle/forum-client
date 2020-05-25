@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch } from "react-redux";
 import { setToken, authentication } from "../../redux/auth/actions";
 
@@ -58,7 +60,11 @@ function LoginForm() {
 
   //Render
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      maxWidth="xs"
+      className={classes.fixedContainer}
+    >
       <CssBaseline></CssBaseline>
       <Typography component="h1" variant="h5">
         Sign in
@@ -88,9 +94,11 @@ function LoginForm() {
           onChange={onChange}
           name="password"
         />
-        <Link href="#" variant="body2">
-          Forgot password?
-        </Link>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+
         <Button
           type="submit"
           fullWidth
@@ -100,6 +108,9 @@ function LoginForm() {
         >
           Sign in
         </Button>
+        <Link href="#" variant="body2">
+          Forgot password?
+        </Link>
       </form>
     </Container>
   );

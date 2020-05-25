@@ -5,7 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import PostForm from "./post/PostForm";
+import PostForm from "./PostForm";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 
 const useStyles = makeStyles((theme) => ({

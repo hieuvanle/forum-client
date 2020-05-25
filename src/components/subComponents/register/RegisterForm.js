@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { useDispatch } from "react-redux";
 import Alert from "@material-ui/lab/alert";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginForm(props) {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [user, setUser] = useState({
     name: "",
     email: "",

@@ -5,7 +5,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import RegisterForm from "../subComponents/RegisterForm";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import UploadArea from "./ProfileForm";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -22,12 +23,25 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid",
     borderRadius: 12,
   },
+  paperButton: {
+    padding: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    borderRadius: 12,
+    fontSize: 16,
+    fontWeight: "bold",
+    lineHeight: 1.325,
+  },
+  icon: {
+    fontSize: 40,
+    color: "#fff",
+  },
 }));
 
-export default function TransitionsModal() {
+export default function ProfileModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  //Modal
   const handleOpen = () => {
     setOpen(true);
   };
@@ -39,15 +53,17 @@ export default function TransitionsModal() {
   return (
     <div>
       <Button
-        onClick={handleOpen}
-        size="small"
+        className={classes.paperButton}
         variant="outlined"
-        color="inherit"
-        className={classes.menuButton}
+        color="secondary"
+        onClick={handleOpen}
+        startIcon={<AddAPhotoIcon color="secondary" />}
       >
-        Getting Started
+        Photo
       </Button>
       <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -59,7 +75,7 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <Paper className={classes.paper} elevation={3}>
-            <RegisterForm closeModal={handleClose} />
+            <UploadArea />
           </Paper>
         </Fade>
       </Modal>
