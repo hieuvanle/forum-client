@@ -23,11 +23,11 @@ function App() {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <Router basename="/forum-client">
         <div>
           <NavBar />
           <Switch>
-            <Route path="/forum-client" component={HomePage}></Route>
+            <Route path="/" component={HomePage}></Route>
           </Switch>
         </div>
       </Router>
