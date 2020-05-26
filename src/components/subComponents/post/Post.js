@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import getAuthUser from "../../../services/getAuthUser";
 
 const useStyles = makeStyles((theme) => ({
   subPaper: {
@@ -52,16 +53,17 @@ function Post(props) {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  //Render
   return (
     <Paper className={classes.subPaper} elevation={2}>
       <Grid container spacing={3}>
         <Grid item xs={2} className={classes.center}>
           <Avatar
-            alt="Remy Sharp"
+            alt={props.author.name}
             className={classes.large}
             src={props.author.image}
           />
@@ -109,7 +111,7 @@ function Post(props) {
             open={open}
             onClose={handleClose}
           >
-            {authState.isAuth ? (
+            {authState.isAuth && props.author._id === getAuthUser()._id ? (
               <div>
                 <MenuItem onClick={handleClose}>Edit</MenuItem>
                 <MenuItem onClick={handleClose}>Delete</MenuItem>

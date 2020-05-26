@@ -9,6 +9,7 @@ import PostModal from "../post/PostModal";
 import ProfileModal from "./ProfileModal";
 import axios from "axios";
 import getAuthUser from "../../../services/getAuthUser";
+import backgroundPhoto from "../../../images/background.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,19 +60,19 @@ export default function ProfileCard() {
       }
     };
     fetchUser(authUser._id);
-  }, []);
+  }, [user]);
 
   //Render
   return (
     <Card className={classes.root}>
-      <img className={classes.background} src="/images/background.jpg" alt="" />
-      <Avatar alt="Remy Sharp" className={classes.large} src={user.image} />
+      <img className={classes.background} src={backgroundPhoto} alt="" />
+      <Avatar alt={user.name} className={classes.large} src={user.image} />
       <CardContent className={classes.center}>
         <Typography gutterBottom variant="h5" component="h2">
           {user.name}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </Typography>
       </CardContent>
       <CardActions>
