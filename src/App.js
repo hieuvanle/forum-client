@@ -27,7 +27,7 @@ function App() {
         <div>
           <NavBar />
           <Switch>
-            <Route path="/forum-client" exact component={HomePage}></Route>
+            <Route path="/forum-client" component={HomePage}></Route>
           </Switch>
         </div>
       </Router>
