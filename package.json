@@ -22,9 +22,9 @@
     "redux-saga": "^1.1.3"
   },
   "scripts": {
-    "start": "env-cmd .env.development react-scripts start",
-    "build": "env-cmd .env.production react-scripts build",
-    "test": "env-cmd .env.development react-scripts test",
+    "start": "env-cmd -f .env.development react-scripts start",
+    "build": "env-cmd -f .env.production react-scripts build",
+    "test": "env-cmd -f .env.development react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
