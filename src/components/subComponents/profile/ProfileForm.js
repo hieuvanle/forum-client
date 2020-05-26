@@ -24,7 +24,7 @@ export default function UploadArea() {
     fd.append("image", file, file.name);
     try {
       const res = await axios.put(
-        `http://localhost:5000/users/${authUser._id}/avatar`,
+        process.env.REACT_APP_BASE_URL + `/users/${authUser._id}/avatar`,
         fd
       );
       setFile({});

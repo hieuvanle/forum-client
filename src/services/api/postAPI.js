@@ -3,7 +3,7 @@ import axios from "axios";
 const postAPI = {
   getPosts: async () => {
     try {
-      const res = await axios.get("http://localhost:5000/posts");
+      const res = await axios.get(process.env.REACT_APP_BASE_URL + "/posts");
       return res;
     } catch (err) {
       return err;

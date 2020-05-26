@@ -50,7 +50,9 @@ export default function ProfileCard() {
   useEffect(() => {
     const fetchUser = async (id) => {
       try {
-        const res = await axios(`http://localhost:5000/users/${id}`);
+        const res = await axios(
+          process.env.REACT_APP_BASE_URL + `/users/${id}`
+        );
         setUser(res.data);
       } catch (err) {
         console.log(err);

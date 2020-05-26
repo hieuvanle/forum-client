@@ -38,7 +38,7 @@ function PostForm() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:5000/users/${post.author}/posts`,
+        process.env.REACT_APP_BASE_URL + `/users/${post.author}/posts`,
         post
       );
       dispatch({ type: "GET_POSTS" });
