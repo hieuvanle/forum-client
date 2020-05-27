@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/forum-client/static/js/main.dea4859d.chunk.js",
-    "main.js.map": "/forum-client/static/js/main.dea4859d.chunk.js.map",
+    "main.js": "/forum-client/static/js/main.b08a288a.chunk.js",
+    "main.js.map": "/forum-client/static/js/main.b08a288a.chunk.js.map",
     "runtime-main.js": "/forum-client/static/js/runtime-main.6f0e2675.js",
     "runtime-main.js.map": "/forum-client/static/js/runtime-main.6f0e2675.js.map",
     "static/js/2.bf241e24.chunk.js": "/forum-client/static/js/2.bf241e24.chunk.js",
     "static/js/2.bf241e24.chunk.js.map": "/forum-client/static/js/2.bf241e24.chunk.js.map",
     "index.html": "/forum-client/index.html",
-    "precache-manifest.d8d45502ace15b1e70c22868c33e6aae.js": "/forum-client/precache-manifest.d8d45502ace15b1e70c22868c33e6aae.js",
+    "precache-manifest.8428a00fdd403296114f09ec806e5aae.js": "/forum-client/precache-manifest.8428a00fdd403296114f09ec806e5aae.js",
     "service-worker.js": "/forum-client/service-worker.js",
     "static/js/2.bf241e24.chunk.js.LICENSE.txt": "/forum-client/static/js/2.bf241e24.chunk.js.LICENSE.txt",
     "static/media/background.jpg": "/forum-client/static/media/background.03a4debe.jpg"
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.6f0e2675.js",
     "static/js/2.bf241e24.chunk.js",
-    "static/js/main.dea4859d.chunk.js"
+    "static/js/main.b08a288a.chunk.js"
   ]
 }
