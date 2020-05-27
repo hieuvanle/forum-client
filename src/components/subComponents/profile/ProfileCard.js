@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
     borderRadius: 12,
     marginTop: theme.spacing(10),
+    position: "fixed",
   },
   background: {
     height: 200,
@@ -60,7 +61,7 @@ export default function ProfileCard() {
       }
     };
     fetchUser(authUser._id);
-  }, [user]);
+  });
 
   //Render
   return (

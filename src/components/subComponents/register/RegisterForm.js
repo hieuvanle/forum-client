@@ -44,7 +44,7 @@ function LoginForm(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/auth/register", user);
+      await axios.post("http://localhost:5000/auth/register", user);
       setSuccess(true);
       setUser({
         name: "",

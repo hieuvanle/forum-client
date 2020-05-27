@@ -4,20 +4,27 @@ import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
+import Alert from "@material-ui/lab/alert";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch } from "react-redux";
-import { setToken, authentication } from "../../redux/auth/actions";
+import { setToken, authentication } from "../../../redux/auth/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "left",
   },
+  loginPaper: {
+    borderRadius: 12,
+    padding: theme.spacing(4),
+    marginTop: theme.spacing(10),
+    position: "fixed",
+    maxWidth: "25vw",
+  },
   form: {
-    width: "100%",
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
@@ -34,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 function LoginForm() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [success, setSuccess] = useState(null);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -57,22 +65,20 @@ function LoginForm() {
       dispatch(setToken(res.data));
       dispatch(authentication());
     } catch (err) {
+      setSuccess(false);
       console.log(err);
     }
   };
 
   //Render
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
-      className={classes.fixedContainer}
-    >
-      <CssBaseline></CssBaseline>
+    <Paper className={classes.loginPaper} elevation={1}>
+      <CssBaseline />
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
-      <form className={classes.form} onSubmit={onSubmit}>
+      {success === false ? <Alert severity="error">Login failed!</Alert> : null}
+      <form onSubmit={onSubmit} className={classes.form}>
         <TextField
           variant="outlined"
           margin="normal"
@@ -115,7 +121,7 @@ function LoginForm() {
           Forgot password?
         </Link>
       </form>
-    </Container>
+    </Paper>
   );
 }
 

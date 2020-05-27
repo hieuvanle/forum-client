@@ -37,7 +37,7 @@ function PostForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      await axios.post(
         process.env.REACT_APP_BASE_URL + `/users/${post.author}/posts`,
         post
       );
@@ -47,7 +47,9 @@ function PostForm() {
         title: "",
         content: "",
       });
+      setSuccess(true);
     } catch (err) {
+      setSuccess(false);
       console.log(err);
     }
   };

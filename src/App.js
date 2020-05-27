@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authentication());
-  }, []);
+  });
   return (
     <ThemeProvider theme={theme}>
       <Router basename="/forum-client">

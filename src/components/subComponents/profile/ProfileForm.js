@@ -23,7 +23,7 @@ export default function UploadArea() {
     const fd = new FormData();
     fd.append("image", file, file.name);
     try {
-      const res = await axios.put(
+      await axios.put(
         process.env.REACT_APP_BASE_URL + `/users/${authUser._id}/avatar`,
         fd
       );
