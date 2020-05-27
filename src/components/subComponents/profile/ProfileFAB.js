@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   button: {
-    margin: theme.spacing(1.5, 0, 1),
+    margin: theme.spacing(1),
     borderRadius: 14,
     width: "30%",
   },
