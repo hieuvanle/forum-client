@@ -44,7 +44,7 @@ function LoginForm(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(process.env.REACT_APP_BASE_URL + "/auth/login", user);
+      await axios.post(process.env.REACT_APP_BASE_URL + "/auth/register", user);
       setSuccess(true);
       setUser({
         name: "",
